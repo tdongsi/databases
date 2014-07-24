@@ -4,3 +4,9 @@
 
 del college.db
 sqlite3 college.db < ..\create\college.sql
+
+del rating.db
+sqlite3 rating.db < ..\create\rating.sql
+
+del social.db
+sqlite3 social.db < ..\create\social.sql
