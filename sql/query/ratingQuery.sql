@@ -60,11 +60,21 @@ and R2.mID = Movie.mID and R2.rID = Reviewer.rID;
 
 /* For each movie that has at least one rating, find the highest number of stars that movie received. 
 Return the movie title and number of stars. Sort by movie title. */
-
+select title, max(stars)
+from Movie join Rating using (mID)
+group by mID
+order by title;
 
 /* List movie titles and average ratings, from highest-rated to lowest-rated. 
 If two or more movies have the same average rating, list them in alphabetical order. */
+select Movie.title, avg(Rating.stars) as average
+from Movie join Rating using (mID)
+group by mID
+order by average desc, Movie.title asc;
 
 
-/* Find the names of all reviewers who have contributed three or more ratings. 
-(As an extra challenge, try writing the query without HAVING or without COUNT.) */
+/* Find the names of all reviewers who have contributed three or more ratings.*/
+select Reviewer.name
+from Reviewer join Rating using (rID)
+group by Rating.rID
+having count(*) >= 3;
