@@ -1,7 +1,8 @@
 /**************************************************************
   TABLE VARIABLES AND SET OPERATORS
   Works for SQLite, Postgres
-  MySQL doesn't support Intersect or Except
+  MySQL doesn't support Intersect or Except.
+  Works on data, created by college.sql.
 **************************************************************/
 
 /**************************************************************
