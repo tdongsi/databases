@@ -31,6 +31,24 @@ where abs(scaledGPA - GPA) > 1.0;
   Colleges paired with the highest GPA of their applicants
 **************************************************************/
 
+/* My attempt */
+select College.cName, College.state, maxGPA
+from (
+select cName, max(GPA) as maxGPA
+from Apply join Student using (sID)
+group by cName
+) as G join College using (cName);
+
+select cName, state, 
+(
+select max(GPA)
+from Apply join Student using (sID)
+group by cName
+) as maxGPA
+from College;
+
+/* End of My attempt */
+
 select College.cName, state, GPA
 from College, Apply, Student
 where College.cName = Apply.cName
