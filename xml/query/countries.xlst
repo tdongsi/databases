@@ -1,0 +1,119 @@
+(:***************************************************************
+XLST exercises for country data.
+The XML data file is from: databases/xml/data/countries.xml
+****************************************************************:)
+
+
+(:***************************************************************
+Return all countries with population between 9 and 10 million. 
+Retain the structure of country elements from the original data. 
+****************************************************************:)
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:output method="xml" indent="yes" omit-xml-declaration="yes" />
+
+<xsl:template match="/">
+      <xsl:for-each select="countries/country">
+         <xsl:if test="./@population &lt; 10000000 and ./@population > 9000000  ">
+            <xsl:copy-of select="." />
+         </xsl:if>
+      </xsl:for-each>
+</xsl:template>
+
+</xsl:stylesheet>
+
+
+
+
+(:***************************************************************
+
+****************************************************************:)
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:output method="xml" indent="yes" omit-xml-declaration="yes" />
+
+<xsl:template match="/">
+      <xsl:for-each select="countries/country">
+         <xsl:if test="contains(./@name, 'stan')">
+            <Stan><xsl:copy-of select="./data(@name)" /></Stan>
+         </xsl:if>
+      </xsl:for-each>
+</xsl:template>
+
+</xsl:stylesheet>
+
+
+
+(:***************************************************************
+Create a table using HTML constructs that lists all countries that have more than 3 languages. 
+Each row should contain the country name in bold, population, area, and number of languages. 
+Sort the rows in descending order of number of languages. 
+No header is needed for the table, but use <table border="1"> to make it format nicely, should you choose to check your result in a browser. 
+****************************************************************:)
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:output method="xml" indent="yes" omit-xml-declaration="yes" />
+
+<xsl:template match="/">
+   <html>
+   <table border="1">
+      <xsl:for-each select="countries/country">
+      <xsl:sort select="count(./language)" order="descending" />
+         <xsl:if test="count(./language) > 3">
+            <tr>
+            <td><b><xsl:value-of select="./data(@name)" /></b></td>
+            <td><xsl:value-of select="./data(@population)" /></td>
+            <td><xsl:value-of select="./data(@area)" /></td>
+            <td><xsl:value-of select="count(./language)" /></td>
+            </tr>
+         </xsl:if>
+      </xsl:for-each>
+   </table>
+   </html>
+</xsl:template>
+
+</xsl:stylesheet>
+
+
+
+
+(:***************************************************************
+
+****************************************************************:)
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:output method="xml" indent="yes" omit-xml-declaration="yes" />
+
+<xsl:template match="/">
+<countries>
+      <xsl:for-each select="countries/country">
+      <country>
+      <xsl:attribute name="languages">
+      <xsl:value-of select="count(./language)" />
+      </xsl:attribute>
+      <xsl:attribute name="cities">
+      <xsl:value-of select="count(./city)" />
+      </xsl:attribute>
+      <name><xsl:value-of select="./data(@name)" /></name>
+      <population><xsl:value-of select="./data(@population)" /></population>
+      </country>
+      </xsl:for-each>
+</countries>
+</xsl:template>
+
+</xsl:stylesheet>
+
+
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:output method="xml" indent="yes" omit-xml-declaration="yes" />
+
+<countries>
+<xsl:template match="/">
+      <xsl:for-each select="countries/country">
+      <country languages="{count(./language)}" cities="{count(./city)}">
+      <name><xsl:value-of select="./data(@name)" /></name>
+      <population><xsl:value-of select="./data(@population)" /></population>
+      </country>
+      </xsl:for-each>
+</xsl:template>
+</countries>
+
+</xsl:stylesheet>
+
+
