@@ -1,11 +1,11 @@
-                    (:=== XPath Demo ===:)
+                    (:=== XPath Demo, using Kernow. ===:)
 
 (:***************************************************************
    SIMPLE PATH EXPRESSION
    All book titles
 ****************************************************************:)
 
-doc("E:/EpiGineer/Bitbucket/sql/IntroToDB/dbclass-script-files/BookstoreQ.xml")/Bookstore/Book/Title
+doc("E:/EpiGineer/Github/databases/xml/data/BookstoreQ.xml")/Bookstore/Book/Title
 
 (:***************************************************************
    ALTERNATIVES (UNION)
