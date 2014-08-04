@@ -1,4 +1,4 @@
-                   (:=== XQuery Demo ===:)
+                   (:=== XQuery Demo using Kernow ===:)
 
 (:***************************************************************
    SIMPLE FLWOR QUERY
@@ -6,7 +6,7 @@
    an author
 ****************************************************************:)
 
-for $b in doc("BookstoreQ.xml")/Bookstore/Book
+for $b in doc("E:/EpiGineer/Github/databases/xml/data/BookstoreQ.xml")/Bookstore/Book
 where $b/@Price < 90
   and $b/Authors/Author/Last_Name = "Ullman"
 return $b/Title
