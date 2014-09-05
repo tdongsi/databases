@@ -1,0 +1,1 @@
+Cassandra projects will be committed into Cassandra repo.
