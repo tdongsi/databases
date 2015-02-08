@@ -1,0 +1,1 @@
+Vertica projects will be committed into vertica repo.
